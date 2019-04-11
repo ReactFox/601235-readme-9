@@ -1,7 +1,7 @@
 # Личный проект «Readme»
 
 * Студент: [Болеслав Салтанкин](https://up.htmlacademy.ru/php/9/user/601235).
-* Наставник: `Неизвестно`.
+* Наставник: [Сергей Зубов](https://htmlacademy.ru/profile/serj).
 
 ---
 
