@@ -2,6 +2,45 @@
 $is_auth = rand(0, 1);
 
 $user_name = 'Болеслав'; // укажите здесь ваше имя
+
+$popular_posts = [
+    [
+        'title' => 'Цитата',
+        'post_type' => 'post-quote',
+        'post_content' => 'Мы в жизни любим только раз, а после ищем лишь похожих',
+        'user' => 'Лариса',
+        'avatar' => 'userpic-larisa-small.jpg',
+    ],
+    [
+        'title' => 'Игра престолов',
+        'post_type' => 'post-text',
+        'post_content' => 'Не могу дождаться начала финального сезона своего любимого сериала!',
+        'user' => 'Владик',
+        'avatar' => 'userpic.jpg'
+    ],
+    [
+        'title' => 'Наконец, обработал фотки!',
+        'post_type' => 'post-photo',
+        'post_content' => 'rock-medium.jpg',
+        'user' => 'Виктор',
+        'avatar' => 'userpic-mark.jpg',
+    ],
+    [
+        'title' => 'Моя мечта',
+        'post_type' => 'post-photo',
+        'post_content' => 'coast-medium.jpg',
+        'user' => 'Лариса',
+        'avatar' => 'userpic-larisa-small.jpg',
+    ],
+    [
+        'title' => 'Лучшие курсы',
+        'post_type' => 'post-link',
+        'post_content' => 'www.htmlacademy.ru',
+        'user' => 'Владик',
+        'avatar' => 'userpic.jpg',
+    ]
+];
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -211,6 +250,9 @@ $user_name = 'Болеслав'; // укажите здесь ваше имя
             </div>
         </div>
         <div class="popular__posts">
+
+
+
             <div class="visually-hidden" id="donor">
                 <!--содержимое для поста-цитаты-->
                 <blockquote>
@@ -244,22 +286,25 @@ $user_name = 'Болеслав'; // укажите здесь ваше имя
                 <p><!--здесь текст--></p>
             </div>
 
-            <article class="popular__post post">
+            <?php foreach ($popular_posts as $key => $value): ?>
+
+        <!--TODO разабраться с классом для тега артикл-->
+            <article class="popular__post post <?= $value['post_type']?>">
                 <header class="post__header">
-                    <h2><!--здесь заголовок--></h2>
+                    <h2><?= $value['title'] ?></h2>
                 </header>
                 <div class="post__main">
-                    <!--здесь содержимое карточки-->
+                    <?= $value['post_content'] ?>
                 </div>
                 <footer class="post__footer">
                     <div class="post__author">
                         <a class="post__author-link" href="#" title="Автор">
                             <div class="post__avatar-wrapper">
                                 <!--укажите путь к файлу аватара-->
-                                <img class="post__author-avatar" src="img/" alt="Аватар пользователя">
+                                <img class="post__author-avatar" src="img/<?= $value['avatar']?>" alt="Аватар пользователя">
                             </div>
                             <div class="post__info">
-                                <b class="post__author-name"><!--здесь имя пользоателя--></b>
+                                <b class="post__author-name"><?= $value['user'] ?></b>
                                 <time class="post__time" datetime="">дата</time>
                             </div>
                         </a>
@@ -287,6 +332,9 @@ $user_name = 'Болеслав'; // укажите здесь ваше имя
                     </div>
                 </footer>
             </article>
+
+            <?php endforeach; ?>
+
         </div>
     </div>
 </section>
