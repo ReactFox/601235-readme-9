@@ -1,39 +1,39 @@
 <?php
 $is_auth = rand(0, 1);
 
-$user_name = 'Болеслав'; // укажите здесь ваше имя
+$user_name = 'Болеслав';
 
 $popular_posts = [
     [
-        'title' => 'Цитата',
+        'post_title' => 'Цитата',
         'post_type' => 'post-quote',
         'post_content' => 'Мы в жизни любим только раз, а после ищем лишь похожих',
         'user' => 'Лариса',
         'avatar' => 'userpic-larisa-small.jpg',
     ],
     [
-        'title' => 'Игра престолов',
+        'post_title' => 'Игра престолов',
         'post_type' => 'post-text',
         'post_content' => 'Не могу дождаться начала финального сезона своего любимого сериала!',
         'user' => 'Владик',
         'avatar' => 'userpic.jpg'
     ],
     [
-        'title' => 'Наконец, обработал фотки!',
+        'post_title' => 'Наконец, обработал фотки!',
         'post_type' => 'post-photo',
         'post_content' => 'rock-medium.jpg',
         'user' => 'Виктор',
         'avatar' => 'userpic-mark.jpg',
     ],
     [
-        'title' => 'Моя мечта',
+        'post_title' => 'Моя мечта',
         'post_type' => 'post-photo',
         'post_content' => 'coast-medium.jpg',
         'user' => 'Лариса',
         'avatar' => 'userpic-larisa-small.jpg',
     ],
     [
-        'title' => 'Лучшие курсы',
+        'post_title' => 'Лучшие курсы',
         'post_type' => 'post-link',
         'post_content' => 'www.htmlacademy.ru',
         'user' => 'Владик',
@@ -288,19 +288,53 @@ $popular_posts = [
 
             <?php foreach ($popular_posts as $key => $value): ?>
 
-        <!--TODO разабраться с классом для тега артикл-->
             <article class="popular__post post <?= $value['post_type']?>">
                 <header class="post__header">
-                    <h2><?= $value['title'] ?></h2>
+                    <h2><?= $value['post_title'] ?></h2>
                 </header>
                 <div class="post__main">
-                    <?= $value['post_content'] ?>
+                    <?php if($value['post_type'] === 'post-quote'): ?>
+                            <blockquote>
+                                <p>
+                                    <?= $value['post_content'] ?>
+                                </p>
+                                <cite>Неизвестный Автор</cite>
+                            </blockquote>;
+                    <?php endif; ?>
+
+                    <?php if($value['post_type'] === 'post-link'): ?>
+                        <div class="post-link__wrapper">
+                            <a class="post-link__external" href="http://<?= $value['post_content'] ?>" title="Перейти по ссылке">
+                                <div class="post-link__info-wrapper">
+                                    <div class="post-link__icon-wrapper">
+                                        <img src="img/logo-vita.jpg" alt="Иконка">
+                                    </div>
+                                    <div class="post-link__info">
+                                        <h3><?= $value['post_title'] ?></h3>
+                                    </div>
+                                </div>
+                                <span><?= $value['post_content'] ?></span>
+                            </a>
+                        </div>
+                    <?php endif; ?>
+
+
+                    <?php if($value['post_type'] === 'post-photo'): ?>
+                        <div class="post-photo__image-wrapper">
+                            <img src="img/<?= $value['post_content'] ?>" alt="Фото от пользователя" width="360" height="240">
+                        </div>
+                    <?php endif; ?>
+
+
+                    <?php if($value['post_type'] === 'post-text'): ?>
+                        <p><?= $value['post_content']?></p>
+                    <?php endif; ?>
+
                 </div>
                 <footer class="post__footer">
                     <div class="post__author">
                         <a class="post__author-link" href="#" title="Автор">
                             <div class="post__avatar-wrapper">
-                                <!--укажите путь к файлу аватара-->
                                 <img class="post__author-avatar" src="img/<?= $value['avatar']?>" alt="Аватар пользователя">
                             </div>
                             <div class="post__info">
