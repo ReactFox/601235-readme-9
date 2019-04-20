@@ -41,7 +41,28 @@ $popular_posts = [
     ]
 ];
 
+function cut_text($text, $length = 300)
+{
+    $length_content = mb_strlen($text);
+    $total = 0;
+    if ($length_content > $length) {
+        $array_words = explode(" ", $text);
+        foreach ($array_words as $word) {
+            $num = mb_strlen($word);
+            $total += $num;
+            if ($total < $length) {
+                $show_contentent[] = $word;
+            }
+        }
+        return '<p>' . implode(' ',
+                $show_contentent) . ' ...' . '</p>' . '<a class="post-text__more-link" href="#">Читать далее</a>';
+    }
+    return '<p>' . $text . '</p>';
+}
+
 ?>
+
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -293,10 +314,10 @@ $popular_posts = [
                     <h2><?= $value['post_title'] ?></h2>
                 </header>
                 <div class="post__main">
-                    <?php if($value['post_type'] === 'post-quote'): ?>
+                    <?php if ($value['post_type'] === 'post-quote'): ?>
                             <blockquote>
                                 <p>
-                                    <?= $value['post_content'] ?>
+                                    <?= cut_text($value['content']) ?>
                                 </p>
                                 <cite>Неизвестный Автор</cite>
                             </blockquote>;
@@ -319,15 +340,15 @@ $popular_posts = [
                     <?php endif; ?>
 
 
-                    <?php if($value['post_type'] === 'post-photo'): ?>
+                    <?php if ($value['post_type'] === 'post-photo'): ?>
                         <div class="post-photo__image-wrapper">
                             <img src="img/<?= $value['post_content'] ?>" alt="Фото от пользователя" width="360" height="240">
                         </div>
                     <?php endif; ?>
 
 
-                    <?php if($value['post_type'] === 'post-text'): ?>
-                        <p><?= $value['post_content']?></p>
+                    <?php if ($value['post_type'] === 'post-text'): ?>
+                        <p><?= cut_text($value['content']) ?></p>
                     <?php endif; ?>
 
                 </div>
