@@ -18,3 +18,11 @@ function cut_text($text, $length = 300)
     }
     return '<p>' . $text . '</p>';
 }
+
+
+function esc($str)
+{
+    $text = htmlspecialchars($str);
+
+    return $text;
+}

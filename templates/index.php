@@ -96,7 +96,7 @@
                     <?php if ($value['post_type'] === 'post-quote'): ?>
                         <blockquote>
                             <p>
-                                <?= cut_text($value['post_content']) ?>
+                                <?= cut_text(esc($value['post_content'])) ?>
                             </p>
                             <cite>Неизвестный Автор</cite>
                         </blockquote>;
@@ -112,7 +112,7 @@
                                     </div>
                                     <div class="post-link__info">
                                         <h3><?= $value['post_title'] ?></h3>
-                                        <span><?= $value['post_content'] ?></span>
+                                        <span><?= esc(['post_content']) ?></span>
                                     </div>
                                 </div>
 
@@ -130,7 +130,7 @@
 
 
                     <?php if ($value['post_type'] === 'post-text'): ?>
-                        <p><?= cut_text($value['post_content']) ?></p>
+                        <p><?= cut_text(esc($value['post_content'])) ?></p>
                     <?php endif; ?>
 
                 </div>
