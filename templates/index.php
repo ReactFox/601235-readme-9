@@ -86,40 +86,6 @@
     </div>
     <div class="popular__posts">
 
-
-        <div class="visually-hidden" id="donor">
-            <!--содержимое для поста-цитаты-->
-            <blockquote>
-                <p>
-                    <!--здесь текст-->
-                </p>
-                <cite>Неизвестный Автор</cite>
-            </blockquote>
-
-            <!--содержимое для поста-ссылки-->
-            <div class="post-link__wrapper">
-                <a class="post-link__external" href="http://" title="Перейти по ссылке">
-                    <div class="post-link__info-wrapper">
-                        <div class="post-link__icon-wrapper">
-                            <img src="img/logo-vita.jpg" alt="Иконка">
-                        </div>
-                        <div class="post-link__info">
-                            <h3><!--здесь заголовок--></h3>
-                        </div>
-                    </div>
-                    <span><!--здесь ссылка--></span>
-                </a>
-            </div>
-
-            <!--содержимое для поста-фото-->
-            <div class="post-photo__image-wrapper">
-                <img src="img/" alt="Фото от пользователя" width="360" height="240">
-            </div>
-
-            <!--содержимое для поста-текста-->
-            <p><!--здесь текст--></p>
-        </div>
-
         <?php foreach ($popular_posts as $key => $value): ?>
 
             <article class="popular__post post <?= $value['post_type'] ?>">
@@ -130,7 +96,7 @@
                     <?php if ($value['post_type'] === 'post-quote'): ?>
                         <blockquote>
                             <p>
-                                <?= cut_text($value['content']) ?>
+                                <?= cut_text($value['post_content']) ?>
                             </p>
                             <cite>Неизвестный Автор</cite>
                         </blockquote>;
@@ -146,9 +112,10 @@
                                     </div>
                                     <div class="post-link__info">
                                         <h3><?= $value['post_title'] ?></h3>
+                                        <span><?= $value['post_content'] ?></span>
                                     </div>
                                 </div>
-                                <span><?= $value['post_content'] ?></span>
+
                             </a>
                         </div>
                     <?php endif; ?>
@@ -163,7 +130,7 @@
 
 
                     <?php if ($value['post_type'] === 'post-text'): ?>
-                        <p><?= cut_text($value['content']) ?></p>
+                        <p><?= cut_text($value['post_content']) ?></p>
                     <?php endif; ?>
 
                 </div>
