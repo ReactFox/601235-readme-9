@@ -112,7 +112,7 @@
                                     </div>
                                     <div class="post-link__info">
                                         <h3><?= $value['post_title'] ?></h3>
-                                        <span><?= esc(['post_content']) ?></span>
+                                        <span><?= esc($value['post_content']) ?></span>
                                     </div>
                                 </div>
 
