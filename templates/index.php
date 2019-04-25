@@ -143,7 +143,10 @@
                             </div>
                             <div class="post__info">
                                 <b class="post__author-name"><?= htmlspecialchars($value['user']) ?></b>
-                                <time class="post__time" datetime="">дата</time>
+
+                                <? $date_pub = generate_random_date($key) //генерирует случайную дату публикаци?>
+
+                                <time class="post__time" datetime="<?= $date_pub ?> " title="<?= date_title($date_pub) ?>"> <?= get_relative_format($date_pub) ?> </time>
                             </div>
                         </a>
                     </div>
