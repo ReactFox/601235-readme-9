@@ -90,13 +90,13 @@
 
             <article class="popular__post post <?= $value['post_type'] ?>">
                 <header class="post__header">
-                    <h2><?= $value['post_title'] ?></h2>
+                    <h2><?= htmlspecialchars($value['post_title']) ?></h2>
                 </header>
                 <div class="post__main">
                     <?php if ($value['post_type'] === 'post-quote'): ?>
                         <blockquote>
                             <p>
-                                <?= cut_text(esc($value['post_content'])) ?>
+                                <?= cut_text(htmlspecialchars($value['post_content'])) ?>
                             </p>
                             <cite>Неизвестный Автор</cite>
                         </blockquote>;
@@ -104,15 +104,15 @@
 
                     <?php if ($value['post_type'] === 'post-link'): ?>
                         <div class="post-link__wrapper">
-                            <a class="post-link__external" href="http://<?= $value['post_content'] ?>"
+                            <a class="post-link__external" href="http://<?= htmlspecialchars($value['post_content']) ?>"
                                title="Перейти по ссылке">
                                 <div class="post-link__info-wrapper">
                                     <div class="post-link__icon-wrapper">
                                         <img src="img/logo-vita.jpg" alt="Иконка">
                                     </div>
                                     <div class="post-link__info">
-                                        <h3><?= $value['post_title'] ?></h3>
-                                        <span><?= esc($value['post_content']) ?></span>
+                                        <h3><?= htmlspecialchars($value['post_title']) ?></h3>
+                                        <span><?= htmlspecialchars($value['post_content']) ?></span>
                                     </div>
                                 </div>
 
@@ -123,14 +123,14 @@
 
                     <?php if ($value['post_type'] === 'post-photo'): ?>
                         <div class="post-photo__image-wrapper">
-                            <img src="img/<?= $value['post_content'] ?>" alt="Фото от пользователя" width="360"
+                            <img src="img/<?= htmlspecialchars($value['post_content']) ?>" alt="Фото от пользователя" width="360"
                                  height="240">
                         </div>
                     <?php endif; ?>
 
 
                     <?php if ($value['post_type'] === 'post-text'): ?>
-                        <p><?= cut_text(esc($value['post_content'])) ?></p>
+                        <p><?= cut_text(htmlspecialchars($value['post_content'])) ?></p>
                     <?php endif; ?>
 
                 </div>
@@ -138,11 +138,11 @@
                     <div class="post__author">
                         <a class="post__author-link" href="#" title="Автор">
                             <div class="post__avatar-wrapper">
-                                <img class="post__author-avatar" src="img/<?= $value['avatar'] ?>"
+                                <img class="post__author-avatar" src="img/<?= htmlspecialchars($value['avatar']) ?>"
                                      alt="Аватар пользователя">
                             </div>
                             <div class="post__info">
-                                <b class="post__author-name"><?= $value['user'] ?></b>
+                                <b class="post__author-name"><?= htmlspecialchars($value['user']) ?></b>
                                 <time class="post__time" datetime="">дата</time>
                             </div>
                         </a>
