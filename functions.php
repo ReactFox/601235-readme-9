@@ -36,28 +36,43 @@ function get_relative_format($date_pub)
     $date_diff = $date_now - $date_pub;
 
     if ($date_diff < 3600) {
-        $date_create = floor($date_diff / 60);
-        $result = $date_create . get_noun_plural_form($date_create, ' минута', ' минуты', ' минут') . ' назад';
-        return $result;
-
-    } elseif ($date_diff > 3600 && $date_diff < 86400) {
-        $date_create = floor($date_diff / 3600);
-        $result = $date_create . get_noun_plural_form($date_create, ' час', ' часа', ' часов') . ' назад';
-        return $result;
-
-    } elseif ($date_diff > 86400 && $date_diff < 604800) {
-        $date_create = floor($date_diff / 86400);
-        $result = $date_create . get_noun_plural_form($date_create, ' день', ' дня', ' дней') . ' назад';
-        return $result;
-
-    } elseif ($date_diff > 604800 && $date_diff < 3024000) {
-        $date_create = floor($date_diff / 604800);
-        $result = $date_create . get_noun_plural_form($date_create, ' неделя', ' недели', ' недель') . ' назад';
-        return $result;
-
+        $params = array(
+            'sec' => 60,
+            'singular' => ' минута',
+            'genitive' => ' минуты',
+            'plural' => ' минут'
+        );
+    } elseif ($date_diff >= 3600 && $date_diff <= 86400) {
+        $params = array(
+            'sec' => 3600,
+            'singular' => ' час',
+            'genitive' => ' часа',
+            'plural' => ' часов'
+        );
+    } elseif ($date_diff > 86400 && $date_diff <= 604800) {
+        $params = array(
+            'sec' => 86400,
+            'singular' => ' день',
+            'genitive' => ' дня',
+            'plural' => ' дней'
+        );
+    } elseif ($date_diff > 604800 && $date_diff <= 3024000) {
+        $params = array(
+            'sec' => 604800,
+            'singular' => ' неделя',
+            'genitive' => ' недели',
+            'plural' => ' недель'
+        );
     } elseif ($date_diff > 3024000) {
-        $date_create = floor($date_diff / 3024000);
-        $result = $date_create . get_noun_plural_form($date_create, ' месяц', ' месяца', ' месяцев') . ' назад';
-        return $result;
+        $params = array(
+            'sec' => 3024000,
+            'singular' => ' месяц',
+            'genitive' => ' месяца',
+            'plural' => ' месяцев'
+        );
     }
+    $date_create = floor($date_diff / $params['sec']);
+    $result = $date_create . get_noun_plural_form($date_create, $params['singular'], $params['genitive'],
+            $params['plural']) . ' назад';
+    return $result;
 }
