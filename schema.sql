@@ -15,6 +15,8 @@ CREATE TABLE users
     contact  TEXT(255)
 );
 
+CREATE UNIQUE INDEX email_index ON users(email);
+
 CREATE TABLE posts
 (
     id           INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -31,6 +33,7 @@ CREATE TABLE posts
     hashtag_id   INT UNSIGNED NOT NULL
 );
 
+CREATE INDEX text_index ON posts (content);
 
 CREATE TABLE comments
 (
@@ -63,14 +66,13 @@ CREATE TABLE messages
     recipient_id INT UNSIGNED NOT NULL
 );
 
-
 CREATE TABLE hashtags
 (
     hashtag_id      INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     hashtag_content TEXT(128)
 );
 
-
+CREATE INDEX hashtags_index ON hashtags (hashtag_content);
 
 CREATE TABLE content_type
 (
@@ -78,7 +80,6 @@ CREATE TABLE content_type
     title      CHAR(8) NOT NULL,
     class_icon CHAR(5) NOT NULL
 );
-
 
 INSERT INTO content_type(title, class_icon)
 VALUES ('Текст', 'text'),
