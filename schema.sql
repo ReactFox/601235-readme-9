@@ -17,39 +17,39 @@ CREATE TABLE users
 
 CREATE TABLE posts
 (
-    id         INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    dt_add     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    title      TEXT NOT NULL,
-    content    TEXT(1024),
+    id           INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    dt_add       TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    title        TEXT         NOT NULL,
+    content      TEXT(1024),
     quote_author CHAR(128),
-    image      CHAR(128),
-    video      CHAR(128),
-    link       CHAR(128),
-    show_count INT UNSIGNED,
-    author_id  INT UNSIGNED NOT NULL,
-    type_id INT UNSIGNED NOT NULL,
-    hashtag_id INT UNSIGNED NOT NULL
+    image        CHAR(128),
+    video        CHAR(128),
+    link         CHAR(128),
+    show_count   INT UNSIGNED,
+    author_id    INT UNSIGNED NOT NULL,
+    type_id      INT UNSIGNED NOT NULL,
+    hashtag_id   INT UNSIGNED NOT NULL
 );
 
 
 CREATE TABLE comments
 (
-    id      INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    content TEXT(1024) NOT NULL,
+    id        INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    content   TEXT(1024)   NOT NULL,
     author_id INT UNSIGNED NOT NULL,
-    posts_id INT UNSIGNED NOT NULL
+    posts_id  INT UNSIGNED NOT NULL
 );
 
 CREATE TABLE likes
 (
-    id_like INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id_like      INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     user_like_id INT UNSIGNED NOT NULL,
     post_like_id INT UNSIGNED NOT NULL
 );
 
 CREATE TABLE subscriber
 (
-    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id            INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     who_signed_id INT UNSIGNED NOT NULL,
     subscribed_id INT UNSIGNED NOT NULL
 );
@@ -60,7 +60,7 @@ CREATE TABLE messages
     dt_add       TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     cont_massage TEXT(1024)   NOT NULL,
     sender_id    INT UNSIGNED NOT NULL,
-    recipient_id    INT UNSIGNED NOT NULL
+    recipient_id INT UNSIGNED NOT NULL
 );
 
 
