@@ -21,26 +21,30 @@ CREATE TABLE posts
     dt_add     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     title      TEXT NOT NULL,
     content    TEXT(1024),
-    author_id  INT UNSIGNED,
+    quote_author CHAR(128),
     image      CHAR(128),
     video      CHAR(128),
     link       CHAR(128),
     show_count INT UNSIGNED,
-    hashtag_id INT UNSIGNED
+    author_id  INT UNSIGNED NOT NULL,
+    type_id INT UNSIGNED NOT NULL,
+    hashtag_id INT UNSIGNED NOT NULL
 );
 
 
 CREATE TABLE comments
 (
     id      INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    content TEXT(1024) NOT NULL
+    content TEXT(1024) NOT NULL,
+    author_id INT UNSIGNED NOT NULL,
+    posts_id INT UNSIGNED NOT NULL
 );
 
 CREATE TABLE likes
 (
     id_like INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    user_like INT UNSIGNED NOT NULL,
-    post_like INT UNSIGNED NOT NULL
+    user_like_id INT UNSIGNED NOT NULL,
+    post_like_id INT UNSIGNED NOT NULL
 );
 
 CREATE TABLE subscriber
@@ -56,7 +60,7 @@ CREATE TABLE messages
     dt_add       TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     cont_massage TEXT(1024)   NOT NULL,
     sender_id    INT UNSIGNED NOT NULL,
-    recipient    INT UNSIGNED NOT NULL
+    recipient_id    INT UNSIGNED NOT NULL
 );
 
 
