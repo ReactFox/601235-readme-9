@@ -30,7 +30,8 @@ CREATE TABLE posts
     show_count   INT UNSIGNED,
     author_id    INT UNSIGNED NOT NULL,
     type_id      INT UNSIGNED NOT NULL,
-    hashtag_id   INT UNSIGNED NOT NULL
+    hashtag_id   INT UNSIGNED NOT NULL,
+    FULLTEXT (title, content)
 );
 
 
@@ -40,6 +41,7 @@ CREATE TABLE posts
 CREATE TABLE comments
 (
     id        INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    dt_add    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     content   TEXT(1024)   NOT NULL,
     author_id INT UNSIGNED NOT NULL,
     posts_id  INT UNSIGNED NOT NULL
@@ -83,4 +85,4 @@ CREATE TABLE content_type
     class_icon CHAR(5) NOT NULL
 );
 
-CREATE FULLTEXT INDEX title_post ON posts (title, content);
+# CREATE FULLTEXT INDEX title_post ON posts (title, content);
