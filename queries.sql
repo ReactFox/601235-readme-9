@@ -95,3 +95,36 @@ SET `dt_add`    = NOW(),
     `content`   = 'поддерживаю',
     `author_id` = 1,
     `posts_id`  = 4;
+
+# получает список постов с сортировкой по популярности и вместе с именами авторов и типом контента;
+SELECT author_id, type_id FROM posts ORDER BY show_count ASC;
+
+/*Или так? Как правильнее ?
+SELECT u.usr_name, ct.title
+FROM posts p
+         JOIN users u ON u.id = p.author_id
+         JOIN content_type ct ON p.type_id = ct.type_id
+ORDER BY show_count ASC;
+*/
+
+
+# получить список постов для конкретного пользователя;
+SELECT id FROM posts WHERE author_id = 1;
+/*
+SELECT usr_name, title
+FROM posts p
+         JOIN users u ON u.id = p.author_id
+WHERE u.usr_name = 'Boris';
+*/
+
+# получает список комментариев для одного поста, в комментариях должен быть логин пользователя
+SELECT cmm.id, u.usr_name, cmm.content
+FROM comments cmm
+         JOIN users u ON u.id = cmm.author_id
+WHERE posts_id = 2;
+
+# добавляет лайк к посту;
+UPDATE likes SET  who_signed_id = 1, postlike = 2;
+
+# подписаться на пользователя.
+UPDATE subscriber SET who_signed_id = 1, subscribed_id =2;
