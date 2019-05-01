@@ -9,13 +9,13 @@ CREATE TABLE users
     id       INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     dt_reg   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     email    CHAR(128) NOT NULL UNIQUE,
-    name     CHAR(64)  NOT NULL,
-    password CHAR(64)  NOT NULL,
+    usr_name CHAR(64)  NOT NULL,
+    pass     CHAR(64)  NOT NULL,
     avatar   CHAR(255),
     contact  TEXT(255)
 );
 
-CREATE UNIQUE INDEX email_index ON users(email);
+# CREATE UNIQUE INDEX email_index ON users(email);
 
 CREATE TABLE posts
 (
@@ -33,7 +33,9 @@ CREATE TABLE posts
     hashtag_id   INT UNSIGNED NOT NULL
 );
 
-CREATE INDEX text_index ON posts (content);
+
+
+# CREATE INDEX text_index ON posts (content);
 
 CREATE TABLE comments
 (
@@ -72,7 +74,7 @@ CREATE TABLE hashtags
     hashtag_content TEXT(128)
 );
 
-CREATE INDEX hashtags_index ON hashtags (hashtag_content);
+# CREATE INDEX hashtags_index ON hashtags (hashtag_content);
 
 CREATE TABLE content_type
 (
@@ -81,9 +83,4 @@ CREATE TABLE content_type
     class_icon CHAR(5) NOT NULL
 );
 
-INSERT INTO content_type(title, class_icon)
-VALUES ('Текст', 'text'),
-       ('Цитата', 'quote'),
-       ('Картинка', 'photo'),
-       ('Видео', 'video'),
-       ('Ссылка', 'link');
+CREATE FULLTEXT INDEX title_post ON posts (title, content);
