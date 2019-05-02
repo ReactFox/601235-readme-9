@@ -54,7 +54,7 @@ CREATE TABLE likes
     post_like_id INT UNSIGNED NOT NULL
 );
 
-CREATE TABLE subscriber
+CREATE TABLE subscribers
 (
     id            INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     who_signed_id INT UNSIGNED NOT NULL,
