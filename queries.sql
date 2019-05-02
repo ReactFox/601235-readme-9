@@ -35,7 +35,7 @@ SET `dt_add`         = NOW(),
     `hashtag_id`   = 1;
 
 INSERT INTO posts
-SET dt_add       = NOW(),
+SET `dt_add`       = NOW(),
     `title`      = 'Игра престолов',
     `content`    = 'Не могу дождаться начала финального сезона своего любимого сериала!',
     `author_id`  = 2,
@@ -43,7 +43,7 @@ SET dt_add       = NOW(),
     `hashtag_id` = 3;
 
 INSERT INTO posts
-SET dt_add       = NOW(),
+SET `dt_add`       = NOW(),
     `title`      = 'Наконец, обработал фотки!',
     `content`    = 'Не могу дождаться начала финального сезона своего любимого сериала!',
     `image`= 'rock-medium.jpg',
@@ -60,7 +60,7 @@ SET dt_add       = NOW(),
     `hashtag_id` = 5;
 
 INSERT INTO posts
-SET dt_add       = NOW(),
+SET `dt_add`       = NOW(),
     `title`      = 'Лучшие курсы',
     `link`       = 'www.htmlacademy.ru',
     `author_id`  = 1,
