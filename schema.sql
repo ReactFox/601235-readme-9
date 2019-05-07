@@ -19,9 +19,9 @@ CREATE TABLE users
 
 CREATE TABLE posts
 (
-    id           INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id           INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     dt_add       TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    title        TEXT         NOT NULL,
+    post_title   TEXT         NOT NULL,
     content      TEXT(1024),
     quote_author CHAR(128),
     image        CHAR(128),
@@ -31,7 +31,7 @@ CREATE TABLE posts
     author_id    INT UNSIGNED NOT NULL,
     type_id      INT UNSIGNED NOT NULL,
     hashtag_id   INT UNSIGNED NOT NULL,
-    FULLTEXT (title, content)
+    FULLTEXT (post_title, content)
 );
 
 
@@ -40,7 +40,7 @@ CREATE TABLE posts
 
 CREATE TABLE comments
 (
-    id        INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id        INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     dt_add    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     content   TEXT(1024)   NOT NULL,
     author_id INT UNSIGNED NOT NULL,
@@ -49,21 +49,21 @@ CREATE TABLE comments
 
 CREATE TABLE likes
 (
-    id_like      INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id_like      INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     user_like_id INT UNSIGNED NOT NULL,
     post_like_id INT UNSIGNED NOT NULL
 );
 
 CREATE TABLE subscribers
 (
-    id            INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id            INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     who_signed_id INT UNSIGNED NOT NULL,
     subscribed_id INT UNSIGNED NOT NULL
 );
 
 CREATE TABLE messages
 (
-    id_msg       INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id_msg       INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     dt_add       TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     cont_massage TEXT(1024)   NOT NULL,
     sender_id    INT UNSIGNED NOT NULL,
@@ -72,7 +72,7 @@ CREATE TABLE messages
 
 CREATE TABLE hashtags
 (
-    hashtag_id      INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    hashtag_id      INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     hashtag_content TEXT(128)
 );
 
@@ -80,9 +80,9 @@ CREATE TABLE hashtags
 
 CREATE TABLE content_type
 (
-    type_id    INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    type_id    INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     title      CHAR(8) NOT NULL,
-    class_icon CHAR(5) NOT NULL
+    class_icon CHAR(10) NOT NULL
 );
 
 # CREATE FULLTEXT INDEX title_post ON posts (title, content);

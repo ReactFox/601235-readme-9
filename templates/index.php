@@ -86,23 +86,23 @@
     </div>
     <div class="popular__posts">
 
-        <?php foreach ($popular_posts as $key => $value): ?>
+        <?php foreach ($posts as $key => $value): ?>
 
-            <article class="popular__post post <?= $value['post_type'] ?>">
+            <article class="popular__post post <?= $value['class_icon'] ?>">
                 <header class="post__header">
                     <h2><?= htmlspecialchars($value['post_title']) ?></h2>
                 </header>
                 <div class="post__main">
-                    <?php if ($value['post_type'] === 'post-quote'): ?>
+                    <?php if ($value['class_icon'] === 'post-quote'): ?>
                         <blockquote>
                             <p>
-                                <?= cut_text(htmlspecialchars($value['post_content'])) ?>
+                                <?= cut_text(htmlspecialchars($value['content'])) ?>
                             </p>
-                            <cite>Неизвестный Автор</cite>
+                            <cite><?= $value['quote_author'] ?></cite>
                         </blockquote>;
                     <?php endif; ?>
 
-                    <?php if ($value['post_type'] === 'post-link'): ?>
+                    <?php if ($value['class_icon'] === 'post-link'): ?>
                         <div class="post-link__wrapper">
                             <a class="post-link__external" href="http://<?= htmlspecialchars($value['post_content']) ?>"
                                title="Перейти по ссылке">
@@ -112,7 +112,7 @@
                                     </div>
                                     <div class="post-link__info">
                                         <h3><?= htmlspecialchars($value['post_title']) ?></h3>
-                                        <span><?= htmlspecialchars($value['post_content']) ?></span>
+                                        <span><?= htmlspecialchars($value['link']) ?></span>
                                     </div>
                                 </div>
 
@@ -121,16 +121,16 @@
                     <?php endif; ?>
 
 
-                    <?php if ($value['post_type'] === 'post-photo'): ?>
+                    <?php if ($value['class_icon'] === 'post-photo'): ?>
                         <div class="post-photo__image-wrapper">
-                            <img src="img/<?= htmlspecialchars($value['post_content']) ?>" alt="Фото от пользователя" width="360"
+                            <img src="img/<?= htmlspecialchars($value['image']) ?>" alt="Фото от пользователя" width="360"
                                  height="240">
                         </div>
                     <?php endif; ?>
 
 
-                    <?php if ($value['post_type'] === 'post-text'): ?>
-                        <p><?= cut_text(htmlspecialchars($value['post_content'])) ?></p>
+                    <?php if ($value['class_icon'] === 'post-text'): ?>
+                        <p><?= cut_text(htmlspecialchars($value['content'])) ?></p>
                     <?php endif; ?>
 
                 </div>
@@ -142,11 +142,11 @@
                                      alt="Аватар пользователя">
                             </div>
                             <div class="post__info">
-                                <b class="post__author-name"><?= htmlspecialchars($value['user']) ?></b>
+                                <b class="post__author-name"><?= htmlspecialchars($value['usr_name']) ?></b>
 
-                                <? $date_pub = generate_random_date($key) //генерирует случайную дату публикаци?>
+                                <? //$date_pub = generate_random_date($key) //генерирует случайную дату публикаци?>
 
-                                <time class="post__time" datetime="<?= $date_pub ?> " title="<?= date_title($date_pub) ?>"> <?= get_relative_format($date_pub) ?> </time>
+                                <time class="post__time" datetime="<?= $value['dt_add'] ?> " title="<?= date_title($value['dt_add']) ?>"> <?= get_relative_format($value['dt_add']) ?> </time>
                             </div>
                         </a>
                     </div>
