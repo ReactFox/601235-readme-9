@@ -4,8 +4,10 @@ $user_name = 'Болеслав';
 
 $page_title = 'readme: популярное';
 
-$popular_posts = [
-/*    [
+// временно комментирует массив
+//TODO уточнить у наставника нужно ли его удалять
+/*$popular_posts = [
+    [
         'post_title' => 'Цитата',
         'post_type' => 'post-quote',
         'post_content' => 'Мы в жизни любим только раз, а после ищем лишь похожих',
@@ -32,12 +34,12 @@ $popular_posts = [
         'post_content' => 'coast-medium.jpg',
         'user' => 'Лариса',
         'avatar' => 'userpic-larisa-small.jpg'
-    ],*/
-/*    [
+    ],
+    [
         'post_title' => 'Лучшие курсы',
         'post_type' => 'post-link',
         'post_content' => 'www.htmlacademy.ru',
         'user' => 'Владик',
         'avatar' => 'userpic.jpg'
-    ]*/
-];
+    ]
+];*/
