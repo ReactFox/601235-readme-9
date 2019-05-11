@@ -2,12 +2,12 @@ USE readme_db;
 
 # Добавляет список типов контента для поста;
 
-INSERT INTO content_type(title, class_icon)
-VALUES ('Текст', 'post-text'),
-       ('Цитата', 'post-quote'),
-       ('Картинка', 'post-photo'),
-       ('Видео', 'post-video'),
-       ('Ссылка', 'post-link');
+INSERT INTO content_type(title, class_icon, icon_filter)
+VALUES ('Текст', 'post-text', 'filter-text'),
+       ('Цитата', 'post-quote', 'filter-quote'),
+       ('Картинка', 'post-photo','filter-photo'),
+       ('Видео', 'post-video', 'filter-video'),
+       ('Ссылка', 'post-link', 'filter-link');
 
 # Добавляет пару пользователей;
 

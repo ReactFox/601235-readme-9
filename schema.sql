@@ -80,9 +80,10 @@ CREATE TABLE hashtags
 
 CREATE TABLE content_type
 (
-    type_id    INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    title      CHAR(8) NOT NULL,
-    class_icon CHAR(10) NOT NULL
+    type_id     INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    title       CHAR(8)  NOT NULL,
+    class_icon  CHAR(10) NOT NULL,
+    icon_filter CHAR(12) NOT NULL
 );
 
 # CREATE FULLTEXT INDEX title_post ON posts (title, content);

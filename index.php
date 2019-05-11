@@ -6,11 +6,10 @@ require_once ("data.php");
 require_once ("init.php");
 
 
-
 if (!$link) {
     $error = mysqli_connect_error();
-//    $content = include_template('error.php', ['error' => $error]);
-    echo '<h2>Ошибка подключения к базе данных</h2>';
+    echo "<h2>$error</h2>";
+    exit;
 }
 
 else {
@@ -19,26 +18,19 @@ else {
     JOIN users u ON u.id = p.author_id
     JOIN content_type ct ON p.type_id = ct.type_id
     ";
+    $posts = get_mysql_selection_result($link, $sql);
 
 
-    $result = mysqli_query($link, $sql);
 
-    if ($result) {
-        $posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    }
+    $sql_get_type_content ="SELECT * FROM content_type";
 
-    else {
-        $error = mysqli_error($link);
-//        $content = include_template('error.php', ['error' => $error]);
-        echo '<h2>Ошибка чтения из БД</h2>';
-    }
+    $type_contents = get_mysql_selection_result($link, $sql_get_type_content);
+
+    //тест
+    echo "<pre>";
+    print_r ($type_content);
+    echo "</pre>";
 }
-
-// ДЛЯ ОТЛАДКИ
-echo "<pre>";
-print_r ($posts);
-echo "</pre>";
-
 
 $content = include_template("index.php", [
     "posts" => $posts
