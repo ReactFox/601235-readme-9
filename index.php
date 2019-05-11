@@ -17,9 +17,7 @@ else {
        usr_name, avatar ,class_icon FROM posts p     
     JOIN users u ON u.id = p.author_id
     JOIN content_type ct ON p.type_id = ct.type_id
-    JOIN likes ON post_like_id = p.id
-    ORDER BY post_like_id DESC    
-    ";
+    ORDER BY show_count DESC";
     $posts = get_mysql_selection_result($link, $sql);
 
 
