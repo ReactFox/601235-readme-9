@@ -76,3 +76,14 @@ function get_relative_format($date_pub)
             $params['plural']) . ' назад';
     return $result;
 }
+
+function get_mysql_selection_result($con, $sql)
+{
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        $error = mysqli_error($con);
+        print ("Ошибка MySQL: " . $error);
+    } else {
+        return mysqli_fetch_all($result, MYSQLI_ASSOC);
+    }
+}

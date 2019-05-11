@@ -2,12 +2,12 @@ USE readme_db;
 
 # Добавляет список типов контента для поста;
 
-INSERT INTO content_type(title, class_icon)
-VALUES ('Текст', 'text'),
-       ('Цитата', 'quote'),
-       ('Картинка', 'photo'),
-       ('Видео', 'video'),
-       ('Ссылка', 'link');
+INSERT INTO content_type(title, class_icon, icon_filter)
+VALUES ('Текст', 'post-text', 'filter-text'),
+       ('Цитата', 'post-quote', 'filter-quote'),
+       ('Картинка', 'post-photo','filter-photo'),
+       ('Видео', 'post-video', 'filter-video'),
+       ('Ссылка', 'post-link', 'filter-link');
 
 # Добавляет пару пользователей;
 
@@ -15,19 +15,21 @@ INSERT INTO users
 SET `dt_reg`     = NOW(),
     `email`    = 'ivan.ivanov@gmail.com',
     `usr_name` = 'Ivan',
-    `pass`     = 'secret1';
+    `pass`     = 'secret1',
+    `avatar` = 'userpic.jpg';
 
 INSERT INTO users
 SET `dt_reg`     = NOW(),
     `email`    = 'boris.borisov@gmail.com',
     `usr_name` = 'Boris',
-    `pass`     = 'secret2';
+    `pass`     = 'secret2',
+    `avatar` = 'userpic-mark.jpg';
 
 # добавляет посты
 
 INSERT INTO posts
-SET `dt_add`         = NOW(),
-    `title`        = 'Цитата',
+SET `dt_add`       = NOW(),
+    `post_title`   = 'Цитата',
     `content`      = 'Мы в жизни любим только раз, а после ищем лишь похожих',
     `quote_author` = 'автор неизвестен',
     `author_id`    = 1,
@@ -35,16 +37,16 @@ SET `dt_add`         = NOW(),
     `hashtag_id`   = 1;
 
 INSERT INTO posts
-SET dt_add       = NOW(),
-    `title`      = 'Игра престолов',
+SET `dt_add`     = NOW(),
+    `post_title` = 'Игра престолов',
     `content`    = 'Не могу дождаться начала финального сезона своего любимого сериала!',
     `author_id`  = 2,
     `type_id`    = 1,
     `hashtag_id` = 3;
 
 INSERT INTO posts
-SET dt_add       = NOW(),
-    `title`      = 'Наконец, обработал фотки!',
+SET `dt_add`     = NOW(),
+    `post_title` = 'Наконец, обработал фотки!',
     `content`    = 'Не могу дождаться начала финального сезона своего любимого сериала!',
     `image`= 'rock-medium.jpg',
     `author_id`  = 2,
@@ -53,15 +55,15 @@ SET dt_add       = NOW(),
 
 INSERT INTO posts
 SET dt_add       = NOW(),
-    `title`      = 'Моя мечта',
+    `post_title` = 'Моя мечта',
     `image`= 'coast-medium.jpg',
     `author_id`  = 1,
     `type_id`    = 3,
     `hashtag_id` = 5;
 
 INSERT INTO posts
-SET dt_add       = NOW(),
-    `title`      = 'Лучшие курсы',
+SET `dt_add`     = NOW(),
+    `post_title` = 'Лучшие курсы',
     `link`       = 'www.htmlacademy.ru',
     `author_id`  = 1,
     `type_id`    = 5,
@@ -104,7 +106,7 @@ FROM posts p
 ORDER BY show_count ASC;
 
 # получить список постов для конкретного пользователя;
-SELECT usr_name, title
+SELECT usr_name, post_title
 FROM posts p
          JOIN users u ON u.id = p.author_id
 WHERE p.author_id = 1;

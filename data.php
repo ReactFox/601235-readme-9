@@ -4,7 +4,9 @@ $user_name = 'Болеслав';
 
 $page_title = 'readme: популярное';
 
-$popular_posts = [
+// временно комментирует массив
+//TODO уточнить у наставника нужно ли его удалять
+/*$popular_posts = [
     [
         'post_title' => 'Цитата',
         'post_type' => 'post-quote',
@@ -40,4 +42,4 @@ $popular_posts = [
         'user' => 'Владик',
         'avatar' => 'userpic.jpg'
     ]
-];
+];*/
